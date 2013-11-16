@@ -1,0 +1,138 @@
+{
+   "abstract" : "Coprosim",
+   "author" : [
+      "Lubomir Rintel <lkundrak@v3.sk>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4007, CPAN::Meta::Converter version 2.132140",
+   "license" : [
+      "open_source"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "WL",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "XML::Smart" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.4"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "File::Temp" : "0",
+            "IO::Socket::UNIX" : "0",
+            "Socket::MsgHdr" : "0",
+            "XML::Smart" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "WL" : {
+         "file" : "lib/WL.pm",
+         "version" : "0.9"
+      },
+      "WL::Base" : {
+         "file" : "lib/WL/Base.pm"
+      },
+      "WL::Connection" : {
+         "file" : "lib/WL/Connection.pm"
+      },
+      "WL::wl_buffer" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_callback" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_compositor" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      },
+      "WL::wl_data_device" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_data_device_manager" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_data_offer" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_data_source" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_display" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_keyboard" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      },
+      "WL::wl_output" : {
+         "file" : "lib/WL.pm",
+         "version" : "2"
+      },
+      "WL::wl_pointer" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      },
+      "WL::wl_region" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_registry" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_seat" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      },
+      "WL::wl_shell" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_shell_surface" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_shm" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_shm_pool" : {
+         "file" : "lib/WL.pm",
+         "version" : "1"
+      },
+      "WL::wl_surface" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      },
+      "WL::wl_touch" : {
+         "file" : "lib/WL.pm",
+         "version" : "3"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=WL"
+      },
+      "repository" : {
+         "url" : "https://github.com/lkundrak/perl-wayland"
+      }
+   },
+   "version" : "0.9"
+}
