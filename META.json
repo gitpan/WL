@@ -1,5 +1,5 @@
 {
-   "abstract" : "Coprosim",
+   "abstract" : "Perl Wayland protocol binding",
    "author" : [
       "Lubomir Rintel <lkundrak@v3.sk>"
    ],
@@ -36,7 +36,7 @@
    "provides" : {
       "WL" : {
          "file" : "lib/WL.pm",
-         "version" : "0.9"
+         "version" : "0.91"
       },
       "WL::Base" : {
          "file" : "lib/WL/Base.pm"
@@ -134,5 +134,5 @@
          "url" : "https://github.com/lkundrak/perl-wayland"
       }
    },
-   "version" : "0.9"
+   "version" : "0.91"
 }

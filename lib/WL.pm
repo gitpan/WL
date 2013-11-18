@@ -41,7 +41,7 @@ until we reach version 1.0.
 
 package WL;
 
-our $VERSION = 0.90;
+our $VERSION = 0.91;
 
 package WL::wl_display;
 
@@ -1415,7 +1415,7 @@ L<http://wayland.freedesktop.org/> -- Wayland project web site
 
 =item *
 
-L<wl-demo.pl> -- Example Wayland client
+L<wl-draw.pl> -- Example Wayland client
 
 =item *
 
