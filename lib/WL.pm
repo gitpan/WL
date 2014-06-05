@@ -9,10 +9,9 @@ use utf8;
 =encoding utf8
 =cut
 
-
 =head1 NAME
 
-WL - Perl Wayland protocol binding
+WL - Perl binding for wayland protocol
 
 =head1 SYNOPSIS
 
@@ -20,9 +19,9 @@ WL - Perl Wayland protocol binding
 
 =head1 DESCRIPTION
 
-B<WL> is a package generated from Wayland protocol definition using
-L<wl-scanner.pl>. It implements L<WL::Base> subclasses with wrappers for
-requests, event processing and constants for enums.
+B<WL> is a package generated from Wayland protocol definition
+using L<wl-scanner.pl>. It implements L<WL::Base> subclasses with wrappers
+for requests, event processing and constants for enums.
 
 It is not indended to be used directly. Instead, see L<WL::Connection> to see
 how to obtain the object instances.
@@ -41,7 +40,7 @@ until we reach version 1.0.
 
 package WL;
 
-our $VERSION = 0.91;
+our $VERSION = 0.92;
 
 package WL::wl_display;
 
@@ -1398,6 +1397,135 @@ sub subtract
 	return $retval;
 }
 
+package WL::wl_subcompositor;
+
+our @ISA = qw/WL::Base/;
+our $VERSION = 1;
+our $INTERFACE = 'wl_subcompositor';
+
+# Requests
+use constant REQUEST_DESTROY => 0;
+use constant REQUEST_GET_SUBSURFACE => 1;
+
+sub destroy
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_DESTROY, pack ('',
+		), $file);
+
+	return $retval;
+}
+
+sub get_subsurface
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_GET_SUBSURFACE, pack ('L L L',
+		($retval = new WL::wl_subsurface ($self->{conn}))->{id},
+		shift->{id},
+		shift->{id}), $file);
+
+	return $retval;
+}
+
+# Enums
+use constant ERROR_BAD_SURFACE => 0;
+
+package WL::wl_subsurface;
+
+our @ISA = qw/WL::Base/;
+our $VERSION = 1;
+our $INTERFACE = 'wl_subsurface';
+
+# Requests
+use constant REQUEST_DESTROY => 0;
+use constant REQUEST_SET_POSITION => 1;
+use constant REQUEST_PLACE_ABOVE => 2;
+use constant REQUEST_PLACE_BELOW => 3;
+use constant REQUEST_SET_SYNC => 4;
+use constant REQUEST_SET_DESYNC => 5;
+
+sub destroy
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_DESTROY, pack ('',
+		), $file);
+
+	return $retval;
+}
+
+sub set_position
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_SET_POSITION, pack ('l l',
+		shift,
+		shift), $file);
+
+	return $retval;
+}
+
+sub place_above
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_PLACE_ABOVE, pack ('L',
+		shift->{id}), $file);
+
+	return $retval;
+}
+
+sub place_below
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_PLACE_BELOW, pack ('L',
+		shift->{id}), $file);
+
+	return $retval;
+}
+
+sub set_sync
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_SET_SYNC, pack ('',
+		), $file);
+
+	return $retval;
+}
+
+sub set_desync
+{
+	my $self = shift;
+	my $file;
+	my $retval;
+
+	$self->call (REQUEST_SET_DESYNC, pack ('',
+		), $file);
+
+	return $retval;
+}
+
+# Enums
+use constant ERROR_BAD_SURFACE => 0;
+
 
 =head1 BUGS
 
@@ -1433,36 +1561,37 @@ L<WL::Connection> -- Estabilish a Wayland connection
 
 =head1 COPYRIGHT
 
-Copyright 2013 Lubomir Rintel
+Copyright 2013, 2014 Lubomir Rintel
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
 
 Copyright notice from the protocol definition file:
 
-Copyright © 2008-2011 Kristian Høgsberg
-Copyright © 2010-2011 Intel Corporation
-
-Permission to use, copy, modify, distribute, and sell this
-software and its documentation for any purpose is hereby granted
-without fee, provided that the above copyright notice appear in
-all copies and that both that copyright notice and this permission
-notice appear in supporting documentation, and that the name of
-the copyright holders not be used in advertising or publicity
-pertaining to distribution of the software without specific,
-written prior permission.  The copyright holders make no
-representations about the suitability of this software for any
-purpose.  It is provided "as is" without express or implied
-warranty.
-
-THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
-SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
-SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
-AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
+  Copyright © 2008-2011 Kristian Høgsberg
+  Copyright © 2010-2011 Intel Corporation
+  Copyright © 2012-2013 Collabora, Ltd.
+  
+  Permission to use, copy, modify, distribute, and sell this
+  software and its documentation for any purpose is hereby granted
+  without fee, provided that the above copyright notice appear in
+  all copies and that both that copyright notice and this permission
+  notice appear in supporting documentation, and that the name of
+  the copyright holders not be used in advertising or publicity
+  pertaining to distribution of the software without specific,
+  written prior permission.  The copyright holders make no
+  representations about the suitability of this software for any
+  purpose.  It is provided "as is" without express or implied
+  warranty.
+  
+  THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
+  SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+  FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+  AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+  ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+  THIS SOFTWARE.
 
 =head1 AUTHORS
 
